@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Projects - My Portfolio{% endblock %}
+
+{% block content %}
+<section class="py-5 mt-5" style="background: linear-gradient(to right, #e0eafc, #cfdef3);">
+    <div class="container">
+        <h1 class="text-center mb-5 fw-bold text-primary">My Projects</h1>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow border-0 h-100" style="border-radius: 15px;">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    {% endif %}
+                    <div class="card-body bg-white">
+                        <h5 class="card-title text-primary">{{ project.title }}</h5>
+                        <p class="card-text text-muted">{{ project.description }}</p>
+                        <p class="text-muted mb-0">
+                            <strong>Technologies:</strong>
+                            <span class="badge bg-secondary">{{ project.technology }}</span>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-light d-flex justify-content-between">
+                        {% if project.url %}
+                        <a href="{{ project.url }}" class="btn btn-sm btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-sm btn-outline-dark" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Custom Project 1: Kids Virtual Assistant -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow border-0 h-100" style="border-radius: 15px;">
+                    <img src="{% static 'images/kids_va.jpg' %}" class="card-img-top" alt="Kids Virtual Assistant" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    <div class="card-body bg-white">
+                        <h5 class="card-title text-primary">Kids Virtual Assistant</h5>
+                        <p class="card-text text-muted">
+                            A fun and interactive voice-based assistant for children. It responds to commands like "Play the song" to play rhymes.
+                        </p>
+                        <p class="text-muted mb-0">
+                            <strong>Technologies:</strong>
+                            <span class="badge bg-secondary">Python</span>
+                            <span class="badge bg-secondary">SpeechRecognition</span>
+                            <span class="badge bg-secondary">Tkinter</span>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-light d-flex justify-content-between">
+                        <span class="btn btn-sm btn-secondary disabled">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </span>
+                        <span class="btn btn-sm btn-outline-dark disabled">
+                            <i class="fab fa-github"></i> GitHub
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Project 2: Food Recipe Website -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow border-0 h-100" style="border-radius: 15px;">
+                    <img src="{% static 'images/food_recipe.jpg' %}" class="card-img-top" alt="Food Recipe Website" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                    <div class="card-body bg-white">
+                        <h5 class="card-title text-primary">Food Recipe Website</h5>
+                        <p class="card-text text-muted">
+                            A MERN stack platform where users can upload, share, and explore various food recipes.
+                        </p>
+                        <p class="text-muted mb-0">
+                            <strong>Technologies:</strong>
+                            <span class="badge bg-secondary">MongoDB</span>
+                            <span class="badge bg-secondary">Express.js</span>
+                            <span class="badge bg-secondary">React</span>
+                            <span class="badge bg-secondary">Node.js</span>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-light d-flex justify-content-between">
+                        <span class="btn btn-sm btn-secondary disabled">
+                            <i class="fas fa-external-link-alt"></i> Demo
+                        </span>
+                        <span class="btn btn-sm btn-outline-dark disabled">
+                            <i class="fab fa-github"></i> GitHub
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

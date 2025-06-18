@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Hero Section with SVG Wave -->
+<section class="position-relative py-5 mt-5 text-white" style="background: linear-gradient(to right, #6a11cb, #2575fc); overflow: hidden;">
+    <div class="container position-relative z-1">
+        <div class="row align-items-center ">
+            <div class="col-lg-7">
+                <h1 class="display-4 fw-bold" >Hello, I'm FIDHA NOURIN E M</h1>
+                <p class="lead">Full Stack Developer </p>
+                <p>I create beautiful and functional </p>
+                <a href="{% url 'projects' %}" class="btn btn-outline-light btn-lg me-3">View My Work</a>
+                <a href="{% url 'contact' %}" class="btn btn-light btn-lg">Get In Touch</a>
+            </div>
+        </div>
+    </div>
+    <svg viewBox="0 0 1440 320" class="position-absolute bottom-0 w-100" style="z-index: 0;">
+        <path fill="#ffffff" fill-opacity="1" d="M0,192L40,181.3C80,171,160,149,240,154.7C320,160,400,192,480,213.3C560,235,640,245,720,218.7C800,192,880,128,960,96C1040,64,1120,64,1200,90.7C1280,117,1360,171,1400,197.3L1440,224L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+    </svg>
+</section>
+
+<!-- Featured Projects -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <h2 class="text-center mb-5 text-primary">Featured Projects</h2>
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg border-0 h-100">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text text-muted">{{ project.description|truncatewords:20 }}</p>
+                        <span class="badge bg-info text-dark">{{ project.technology }}</span>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between border-top-0 bg-transparent">
+                        {% if project.url %}
+                        <a href="{{ project.url }}" class="btn btn-sm btn-primary" target="_blank">Live Demo</a>
+                        {% endif %}
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" class="btn btn-sm btn-outline-secondary" target="_blank">GitHub</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section with blob shape -->
+<section class="py-5 position-relative" style="background: #b9e2e2;">
+    <div class="container">
+        <h2 class="text-center mb-5 text-primary">Skills</h2>
+        <div class="row">
+            {% for skill in skills %}
+            <div class="col-md-6 mb-4">
+                <div class="d-flex justify-content-between mb-1">
+                    <strong>{{ skill.name }}</strong>
+                    <span>{{ skill.proficiency }}/10</span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: {{ skill.proficiency }}0%">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Blob SVG -->
+    <svg viewBox="0 0 1440 320" class="position-absolute top-0 start-0 w-100" style="transform: rotate(180deg); z-index: 0;">
+        <path fill="#6f42c1" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,101.3C672,75,768,53,864,80C960,107,1056,181,1152,202.7C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+    </svg>
+</section>
+
+{% endblock %}
